@@ -1,0 +1,62 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* disable scrolling */
+  font-family: system-ui, Arial, sans-serif;
+}
+
+/* Chart wrapper: top-left */
+#chartWrapper {
+  position: absolute;
+  top: 2%;
+  width: 45%;
+  height: 45%;
+  left: 50%;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, 0);
+}
+
+/* Circle chart: bottom-right */
+.chart-container {
+  position: absolute;
+  bottom: 2%;
+  width: 45%;
+  height: 45%;
+  left: 50%;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, 0);
+}
+
+/* ✅ Make canvases square, no distortion */
+#myChart, #circleCanvas {
+  width: auto;
+  height: 100%;
+  aspect-ratio: 1 / 1; /* always keep square */
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Tooltip styling */
+#tooltip {
+  position: absolute;
+  background: rgba(0,0,0,0.75);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  pointer-events: none;
+  display: none;
+}
