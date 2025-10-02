@@ -18,15 +18,9 @@
             const dtoken = liff.getDecodedIDToken();
             const userId = dtoken.sub;
             alert("Your UserID: " + userId);
-            liff.getProfile()
-                .then(profile => {
-                    console.log("Display Name:", profile.displayName);
-                    console.log("Picture URL:", profile.pictureUrl);
-                })
-                .catch(err => console.error(err));
             }
         }).catch(err => console.error("LIFF init error:", err));
-    }
+        }
         $(document).ready(function() {
             initLiff();
         });
