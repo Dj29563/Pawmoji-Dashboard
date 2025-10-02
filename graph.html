@@ -1,21 +1,35 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title>User Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <title>PAWMOJI</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://static.line-scdn.net/liff/edge/versions/2.9.0/sdk.js"></script>
 </head>
 <body>
-    <div id="chartWrapper">
-        <canvas id="myChart" width="600" height="600"></canvas>
-    </div>
-    <div class="chart-container">
-    <canvas id="circleCanvas" width="600" height="600"></canvas>
-    <div id="tooltip"></div>
-  </div>
-
+    <script>
+        function initLiff() {
+            liff.init({ liffId: "2008179386-r0RPOmdm" })
+            .then(() => {
+            if (!liff.isLoggedIn()) {
+                liff.login();
+            } else {
+            const dtoken = liff.getDecodedIDToken();
+            const userId = dtoken.sub;
+            alert("Your UserID: " + userId);
+            liff.getProfile()
+                .then(profile => {
+                    console.log("Display Name:", profile.displayName);
+                    console.log("Picture URL:", profile.pictureUrl);
+                })
+                .catch(err => console.error(err));
+            }
+        }).catch(err => console.error("LIFF init error:", err));
+    }
+        $(document).ready(function() {
+            initLiff();
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
