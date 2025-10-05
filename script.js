@@ -51,7 +51,7 @@ const chart = new Chart(ctx, {
 });
 
 // Manual animation from center
-let animProgress = 0;
+var animProgress = 0;
 function animateRadar() {
     animProgress += 0.05; // adjust speed here
     if (animProgress > 1) animProgress = 1;
@@ -205,5 +205,4 @@ canvas.addEventListener('mousemove', (e) => {
 canvas.addEventListener('mouseleave', () => {
   tooltip.style.display = 'none';
 });
-
 
