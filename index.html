@@ -25,7 +25,7 @@
             } else {
             const dtoken = liff.getDecodedIDToken();
             const userId = dtoken.sub;
-            animateRadar();
+            getUserIdData(userId);
             }
         }).catch(err => console.error("LIFF init error:", err));
         }
