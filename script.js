@@ -61,7 +61,6 @@ function animateRadar() {
 
     if (animProgress < 1) requestAnimationFrame(animateRadar);
 }
-animateRadar();
 
 
 
