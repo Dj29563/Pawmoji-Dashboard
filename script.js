@@ -2,82 +2,95 @@ const SHEET_ID = "1EgoSPO4IgeqGEt1bOYMdjswDr99cZpOCF-ocKUQk6yQ";
 const SHEET_NAME = "Database";
 const QUERY_URL = "https://docs.google.com/spreadsheets/d/1EgoSPO4IgeqGEt1bOYMdjswDr99cZpOCF-ocKUQk6yQ/gviz/tq?sheet=Database";
 
+var chart = null;
+var counts = {};
+var radarDataOriginal = [0, 0, 0, 0, 0, 0, 0, 0];
+var tot=0;
 function getUserIdData(userId) {
   fetch(QUERY_URL)
     .then(res => res.text())
     .then(data => {
-      // Clean the JSON wrapper
       const jsonText = data.substring(47, data.length - 2);
       const json = JSON.parse(jsonText);
       const rows = json.table.rows;
 
-      // Filter rows where first column == userId
       const userRows = rows.filter(row => row.c[0]?.v === userId);
 
       console.log("Rows for user:", userId, userRows);
 
-      // Example: show values in console
+      for (let i = 1; i <= 8; i++) {
+        counts[i] = 0;
+      }
+
       userRows.forEach(row => {
-        console.log("UserId:", row.c[0]?.v, "Data:", row.c[1]?.v);
+        const value = row.c[3]?.v; 
+        if (value >= 1 && value <= 8) {
+          counts[value]++;
+          tot++;
+        }
       });
 
-      return userRows;
+      console.log("Counts for user:", counts);
+      for(let i = 1; i<= 8; i++) {
+        radarDataOriginal[i-1] = counts[i];
+      }
+      createRadarChart();
+      return { userRows, counts };
     })
     .catch(err => console.error("Error fetching user data:", err));
 }
 
-
-const ctx = document.getElementById('myChart').getContext('2d');
-
-// Original data
-const radarDataOriginal = [25, 50, 75, 40, 90, 60, 35, 80];
+var ctx = document.getElementById('myChart').getContext('2d');
 
 // Create chart with initial zeros
-const chart = new Chart(ctx, {
-    type: 'radar',
-    data: {
-        labels: [
-            'รู้สึกมีความสุข','รู้สึกเชื่อใจ','รู้สึกกลัว','รู้สึกตกใจ',
-            'รู้สึกเศร้า','รู้สึกเกลียดชัง','รู้สึกโกรษ','รู้สึกสนใจ'
-        ],
-        datasets: [{
-            label: 'User Data',
-            data: radarDataOriginal.map(() => 0), // start from 0
-            borderColor: '#a8a8a8ff',
-            backgroundColor: 'rgba(204, 204, 204, 0.6)',
-            pointBackgroundColor: [
-                '#fffe40','#53fe5c','#008000','#5cb3ff',
-                '#4166f5','#fb5ffc','#ff0000','#ffa756'
-            ],
-            pointRadius: 4
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: true,
-        aspectRatio: 1,
-        scales: {
-            r: {
-                min: 0,
-                max: 100,
-                ticks: { display: false },
-                grid: { circular: true },
-                pointLabels: { font: { size: 14 } }
-            }
-        },
-        plugins: {
-            legend: { display: false },
-            tooltip: {
-                callbacks: {
-                    label: function(context) {
-                        return 'Value: ' + radarDataOriginal[context.dataIndex];
-                    }
-                }
-            }
-        },
-        animation: { duration: 0 } // disable default animation
-    }
-});
+function createRadarChart() {
+  chart = new Chart(ctx, {
+      type: 'radar',
+      data: {
+          labels: [
+              'รู้สึกมีความสุข','รู้สึกเชื่อใจ','รู้สึกกลัว','รู้สึกตกใจ',
+              'รู้สึกเศร้า','รู้สึกเกลียดชัง','รู้สึกโกรษ','รู้สึกสนใจ'
+          ],
+          datasets: [{
+              label: 'User Data',
+              data: radarDataOriginal.map(() => 0), // start from 0
+              borderColor: '#a8a8a8ff',
+              backgroundColor: 'rgba(204, 204, 204, 0.6)',
+              pointBackgroundColor: [
+                  '#fffe40','#53fe5c','#008000','#5cb3ff',
+                  '#4166f5','#fb5ffc','#ff0000','#ffa756'
+              ],
+              pointRadius: 4
+          }]
+      },
+      options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          aspectRatio: 1,
+          scales: {
+              r: {
+                  min: 0,
+                  max: tot,
+                  ticks: { display: false },
+                  grid: { circular: true },
+                  pointLabels: { font: { size: 14 } }
+              }
+          },
+          plugins: {
+              legend: { display: false },
+              tooltip: {
+                  callbacks: {
+                      label: function(context) {
+                          return 'Value: ' + radarDataOriginal[context.dataIndex];
+                      }
+                  }
+              }
+          },
+          animation: { duration: 0 } // disable default animation
+      }
+  });
+  animateRadar();
+}
 
 // Manual animation from center
 var animProgress = 0;
