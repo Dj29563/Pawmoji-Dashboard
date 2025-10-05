@@ -1,3 +1,17 @@
+const SHEET_ID = "1EgoSPO4IgeqGEt1bOYMdjswDr99cZpOCF-ocKUQk6yQ";
+const SHEET_NAME = "Database";
+const QUERY_URL = "https://docs.google.com/spreadsheets/d/1EgoSPO4IgeqGEt1bOYMdjswDr99cZpOCF-ocKUQk6yQ/gviz/tq?sheet=Database";
+
+fetch(QUERY_URL)
+  .then(res => res.text())
+  .then(data => {
+    const json = JSON.parse(data.substr(47).slice(0,-2));
+    console.log(json.table.rows);
+    json.table.rows.forEach(row => {
+      console.log(row.c[0]?.v, row.c[1]?.v); // first & second column
+    });
+});
+
 const ctx = document.getElementById('myChart').getContext('2d');
 
 // Original data
