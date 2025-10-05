@@ -8,6 +8,13 @@
     <script src="https://static.line-scdn.net/liff/edge/versions/2.9.0/sdk.js"></script>
 </head>
 <body>
+    <div id="chartWrapper">
+        <canvas id="myChart" width="600" height="600"></canvas>
+    </div>
+    <div class="chart-container">
+    <canvas id="circleCanvas" width="600" height="600"></canvas>
+    <div id="tooltip"></div>
+    </div>
     <script>
         function initLiff() {
             liff.init({ liffId: "2008179386-r0RPOmdm" })
@@ -17,7 +24,7 @@
             } else {
             const dtoken = liff.getDecodedIDToken();
             const userId = dtoken.sub;
-            alert("Your UserID: " + userId);
+            animateRadar();
             }
         }).catch(err => console.error("LIFF init error:", err));
         }
