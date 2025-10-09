@@ -13,8 +13,7 @@
         <canvas id="myChart" width="600" height="600"></canvas>
     </div>
     <div class="chart-container">
-    <canvas id="circleCanvas" width="600" height="600"></canvas>
-    <div id="tooltip"></div>
+
     </div>
     <script>
         function initLiff() {
@@ -25,7 +24,7 @@
             } else {
             const dtoken = liff.getDecodedIDToken();
             const userId = dtoken.sub;
-            getUserIdData(userId);
+            start(userId);
             }
         }).catch(err => console.error("LIFF init error:", err));
         }
