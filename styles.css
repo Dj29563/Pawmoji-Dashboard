@@ -60,3 +60,21 @@ html, body {
   pointer-events: none;
   display: none;
 }
+
+#chartWrapper2 {
+  position: relative;
+  width: 800px;
+  height: 400px;
+}
+.chartCanvas2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#buttons2 {
+  margin-top: 10px;
+}
+button {
+  margin-right: 5px;
+  padding: 5px 10px;
+}
