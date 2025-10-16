@@ -207,7 +207,7 @@ function createCharts2() {
         plugins: { legend: { display: false } },
         scales: {
           x: { stacked: false, ticks: { display: false } },
-          y: { beginAtZero: true, max: 10, grid: { color: 'rgba(0,0,0,0.1)' } }
+          y: { beginAtZero: true, max: tot[3], grid: { color: 'rgba(0,0,0,0.1)' } }
         }
       }
     });
