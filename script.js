@@ -8,12 +8,6 @@ var counts = Array.from({length:4}, () => Array(8).fill(0));
 var tot = Array(4).fill(0);
 var tem = 3;
 
-var dataall = Array.from({ length: 4 }, () =>
-  Array.from({ length: 8 }, () =>
-    Array(24).fill(0)
-  )
-);
-
 function formatDateCompactInt(date) {
   const pad = (num, size) => String(num).padStart(size, '0');
 
@@ -66,11 +60,9 @@ function getUserIdData(userId) {
             }
           }
         }
-        var hourdata = Number((timecolInt / 10000000n) % 100n);
         if (value >= 1 && value <= 8) {
           counts[tem][value-1]++;
           tot[tem]++;
-          dataall[tem][value-1][hourdata]++;
         }
       });
 
@@ -79,13 +71,11 @@ function getUserIdData(userId) {
         for(let j=0;j<=7;j++)
         {
           counts[i][j]=counts[i][j]+counts[i-1][j];
-          dataall[i][j][j]=dataall[i][j][j]+dataall[i-1][j][j];
         }
         tot[i]=tot[i]+tot[i-1];
       }
 
       console.log("Counts for user:", counts);
-      console.log("dataall for user:", dataall);
       for(let i = 1; i<= 8; i++) {
         radarDataOriginal[i-1] = counts[0][i-1];
       }
