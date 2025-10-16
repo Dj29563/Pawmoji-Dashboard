@@ -49,16 +49,14 @@ function getUserIdData(userId) {
         if (timenow < 7000000000 && tem==3)
         {
           tem=2;
-        }else{
-          if (timenow < 3000000000 && tem==2)
-          {
-            tem=1;
-          }else{
-            if(timenow < 1000000000 && tem==1)
-            {
-              tem=0;
-            }
-          }
+        }
+        if(timenow < 3000000000 && tem==2)
+        {
+          tem=1;
+        }
+        if(timenow < 1000000000 && tem==1)
+        {
+          tem=0;
         }
         if (value >= 1 && value <= 8) {
           counts[tem][value-1]++;
@@ -77,7 +75,7 @@ function getUserIdData(userId) {
 
       console.log("Counts for user:", counts);
       for(let i = 1; i<= 8; i++) {
-        radarDataOriginal[i-1] = counts[0][i-1];
+        radarDataOriginal[i-1] = counts[3][i-1];
       }
       createRadarChart();
       return { userRows, counts };
@@ -115,7 +113,7 @@ function createRadarChart() {
           scales: {
               r: {
                   min: 0,
-                  max: tot[0],
+                  max: tot[3],
                   ticks: { display: false },
                   grid: { circular: true },
                   pointLabels: { font: { size: 14 } }
