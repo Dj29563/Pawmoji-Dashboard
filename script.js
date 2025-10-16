@@ -7,7 +7,11 @@ var radarDataOriginal = [0, 0, 0, 0, 0, 0, 0, 0];
 var counts = Array.from({length:4}, () => Array(8).fill(0));
 var tot = Array(4).fill(0);
 var tem = 3;
-
+var dataall = Array.from({ length: 4 }, () =>
+  Array.from({ length: 8 }, () =>
+    Array(24).fill(0)
+  )
+);
 function formatDateCompactInt(date) {
   const pad = (num, size) => String(num).padStart(size, '0');
 
@@ -45,6 +49,7 @@ function getUserIdData(userId) {
         const timecol = row.c[4]?.v;
         var timecolInt = BigInt(timecol);
         var timenow = compactInt - timecolInt;
+        var hourdata = Number((timecolInt / 10000000n) % 100n);
         console.log(timenow);
         if (timenow < 7000000000 && tem==3)
         {
@@ -61,6 +66,7 @@ function getUserIdData(userId) {
         if (value >= 1 && value <= 8) {
           counts[tem][value-1]++;
           tot[tem]++;
+          dataall[tem][value-1][hourdata]++;
         }
       });
 
@@ -69,6 +75,7 @@ function getUserIdData(userId) {
         for(let j=0;j<=7;j++)
         {
           counts[i][j]=counts[i][j]+counts[i-1][j];
+          dataall[i][j][j]=dataall[i][j][j]+dataall[i-1][j][j];
         }
         tot[i]=tot[i]+tot[i-1];
       }
