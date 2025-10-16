@@ -85,6 +85,7 @@ function getUserIdData(userId) {
         radarDataOriginal[i-1] = counts[3][i-1];
       }
       createRadarChart();
+      createCharts2();
       return { userRows, counts };
     })
     .catch(err => console.error("Error fetching user data:", err));
@@ -172,44 +173,47 @@ const colors2 = [
 const charts2 = [];
 const chartOpacity2 = Array(8).fill(true);
 
-for(let i=0;i<8;i++){
-  const ctx2 = document.getElementById('chart'+i).getContext('2d');
-  charts2[i] = new Chart(ctx2, {
-    type: 'bar',
-    data: {
-      labels: labels2,
-      datasets: [
-        {
-          type: 'bar',
-          label: 'Category ' + (i+1),
-          data: dataall[3][i],
-          backgroundColor: colors2[i],
-          barPercentage: 1.0,
-          categoryPercentage: 1.0
-        },
-        {
-          type: 'line',
-          label: 'Momentum ' + (i+1),
-          data: dataall[3][i],
-          borderColor: colors2[i].replace('0.6','1'),
-          borderWidth: 2,
-          fill: false,
-          tension: 0.4,
-          pointRadius: 0
+function createCharts2() {
+  for(let i=0;i<8;i++){
+    const ctx2 = document.getElementById('chart'+i).getContext('2d');
+    charts2[i] = new Chart(ctx2, {
+      type: 'bar',
+      data: {
+        labels: labels2,
+        datasets: [
+          {
+            type: 'bar',
+            label: 'Category ' + (i+1),
+            data: dataall[3][i],
+            backgroundColor: colors2[i],
+            barPercentage: 1.0,
+            categoryPercentage: 1.0
+          },
+          {
+            type: 'line',
+            label: 'Momentum ' + (i+1),
+            data: dataall[3][i],
+            borderColor: colors2[i].replace('0.6','1'),
+            borderWidth: 2,
+            fill: false,
+            tension: 0.4,
+            pointRadius: 0
+          }
+        ]
+      },
+      options: {
+        responsive: false,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { stacked: false, ticks: { display: false } },
+          y: { beginAtZero: true, max: 10, grid: { color: 'rgba(0,0,0,0.1)' } }
         }
-      ]
-    },
-    options: {
-      responsive: false,
-      maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
-      scales: {
-        x: { stacked: false, ticks: { display: false } },
-        y: { beginAtZero: true, max: 10, grid: { color: 'rgba(0,0,0,0.1)' } }
       }
-    }
-  });
+    });
+  }
 }
+
 
 function toggleChart(index){
   chartOpacity2[index] = !chartOpacity2[index];
