@@ -24,22 +24,6 @@ html, body {
   transform: translate(-50%, 0);
 }
 
-/* Circle chart: bottom-right */
-.chart-container {
-  position: absolute;
-  bottom: 2%;
-  width: 70%;
-  height: 45%;
-  left: 50%;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: translate(-50%, 0);
-}
-
 /* ✅ Make canvases square, no distortion */
 #myChart, #circleCanvas {
   width: auto;
@@ -62,9 +46,19 @@ html, body {
 }
 
 #chartWrapper2 {
-  position: relative;
-  width: 40%;
-  height: 70%;
+  position: absolute;
+  bottom: 2%;
+  width: 70%;
+  height: 45%;
+  left: 50%;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, 0);
 }
 .chartCanvas2 {
   position: absolute;
@@ -115,6 +109,7 @@ button {
   border-radius: 8px;
   color: black;
 }
+
 
 
 
