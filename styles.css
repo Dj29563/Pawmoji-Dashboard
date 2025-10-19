@@ -78,3 +78,19 @@ button {
   margin-right: 5px;
   padding: 5px 10px;
 }
+
+#page2 {
+  position: relative; /* gives Page 2 its own coordinate system */
+  overflow: hidden;   /* prevents Pawmoji from leaking out */
+}
+
+#pawmoji-container {
+  position: absolute; /* positioned relative to page2 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
