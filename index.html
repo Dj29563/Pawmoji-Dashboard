@@ -1,47 +1,93 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>PAWMOJI</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-    <script src="https://static.line-scdn.net/liff/edge/versions/2.9.0/sdk.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scroll Snap Site</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://static.line-scdn.net/liff/edge/versions/2.9.0/sdk.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      scroll-snap-type: y mandatory;
+      overflow-y: scroll;
+    }
+
+    section {
+      scroll-snap-align: start;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background 0.6s;
+    }
+
+    #page1 { background: #1abc9c; color: white; font-size: 3em; }
+    #page2 { background: #fff; }
+    #page3 { background: #9b59b6; color: white; font-size: 3em; }
+  </style>
 </head>
 <body>
-    <div id="chartWrapper">
+
+  <section id="page1">
+    <div>User ID</div>
+  </section>
+
+  <section id="page2">
+    <div id="pawmoji-container">
+      <div id="chartWrapper">
         <canvas id="myChart" width="600" height="600"></canvas>
-    </div>
-    <div class="chart-container">
+      </div>
+
+      <div class="chart-container">
         <div id="chartWrapper2">
-            <canvas class="chartCanvas2" id="chart0"></canvas>
-            <canvas class="chartCanvas2" id="chart1"></canvas>
-            <canvas class="chartCanvas2" id="chart2"></canvas>
-            <canvas class="chartCanvas2" id="chart3"></canvas>
-            <canvas class="chartCanvas2" id="chart4"></canvas>
-            <canvas class="chartCanvas2" id="chart5"></canvas>
-            <canvas class="chartCanvas2" id="chart6"></canvas>
-            <canvas class="chartCanvas2" id="chart7"></canvas>
-            </div>
+          <canvas class="chartCanvas2" id="chart0"></canvas>
+          <canvas class="chartCanvas2" id="chart1"></canvas>
+          <canvas class="chartCanvas2" id="chart2"></canvas>
+          <canvas class="chartCanvas2" id="chart3"></canvas>
+          <canvas class="chartCanvas2" id="chart4"></canvas>
+          <canvas class="chartCanvas2" id="chart5"></canvas>
+          <canvas class="chartCanvas2" id="chart6"></canvas>
+          <canvas class="chartCanvas2" id="chart7"></canvas>
         </div>
+      </div>
     </div>
-    <script>
-        function initLiff() {
-            liff.init({ liffId: "2008179386-r0RPOmdm" })
-            .then(() => {
-            if (!liff.isLoggedIn()) {
-                liff.login();
-            } else {
-            const dtoken = liff.getDecodedIDToken();
-            const userId = dtoken.sub;
-            start(userId);
-            }
-        }).catch(err => console.error("LIFF init error:", err));
+  </section>
+
+  <section id="page3">
+    <div>Data analysis</div>
+  </section>
+
+  <script>
+    function initLiff() {
+      liff.init({ liffId: "2008179386-r0RPOmdm" })
+      .then(() => {
+        if (!liff.isLoggedIn()) {
+          liff.login();
+        } else {
+          const dtoken = liff.getDecodedIDToken();
+          const userId = dtoken.sub;
+          start(userId);
         }
-        $(document).ready(function() {
-            initLiff();
-        });
-    </script>
-    <script src="script.js"></script>
+      }).catch(err => console.error("LIFF init error:", err));
+    }
+
+    $(document).ready(function() {
+      initLiff();
+    });
+  </script>
+
+  <script src="script.js"></script>
 </body>
 </html>
