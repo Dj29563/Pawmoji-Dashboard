@@ -11,7 +11,7 @@ html, body {
 #chartWrapper {
   position: absolute;
   top: 2%;
-  width: 45%;
+  width: 70%;
   height: 45%;
   left: 50%;
   background: #fff;
@@ -63,8 +63,8 @@ html, body {
 
 #chartWrapper2 {
   position: relative;
-  width: 800px;
-  height: 400px;
+  width: 70%;
+  height: 70%;
 }
 .chartCanvas2 {
   position: absolute;
@@ -115,3 +115,4 @@ button {
   border-radius: 8px;
   color: black;
 }
+
