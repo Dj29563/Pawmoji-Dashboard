@@ -86,6 +86,7 @@ function getUserIdData(userId) {
       }
       createRadarChart();
       createCharts2();
+      fetchResponse();
       return { userRows, counts };
     })
     .catch(err => console.error("Error fetching user data:", err));
@@ -230,4 +231,28 @@ function toggleChart(index){
     document.querySelectorAll('#buttons button')[index].textContent = 'Show Category ' + (index+1);
   }
   charts2[index].update();
+}
+
+//page3
+
+const chatDiv = document.getElementById("chat");
+
+async function fetchResponse() {
+  chatDiv.innerHTML += `<div class="message gpt">Fetching response...</div>`;
+  chatDiv.scrollTop = chatDiv.scrollHeight;
+
+  try {
+    const response = await fetch("/api/chat");
+    const data = await response.json();
+
+    if (data.reply) {
+      chatDiv.innerHTML += `<div class="message gpt">GPT: ${data.reply}</div>`;
+    } else {
+      chatDiv.innerHTML += `<div class="message gpt">Error: ${data.error}</div>`;
+    }
+    chatDiv.scrollTop = chatDiv.scrollHeight;
+  } catch (err) {
+    chatDiv.innerHTML += `<div class="message gpt">Error: ${err.message}</div>`;
+    chatDiv.scrollTop = chatDiv.scrollHeight;
+  }
 }
