@@ -114,20 +114,22 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 5%;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  gap: 3vh;
 }
 
 .welcome-text {
-  font-size: 3.5vw;      /* scales with screen width */
+  font-size: 8vw;           
   font-weight: 700;
   color: #444;
-  margin-bottom: 2%;
   text-align: center;
 }
 
 .user-pic {
-  width: 25%;
-  max-width: 120px;
+  width: 30vw;              
+  max-width: 250px;          
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   object-fit: cover;
@@ -135,8 +137,7 @@ button {
 }
 
 .user-name {
-  margin-top: 2%;
-  font-size: 2.5vw;
+  font-size: 6vw;
   color: #333;
   font-weight: 600;
   text-align: center;
