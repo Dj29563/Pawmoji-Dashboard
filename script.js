@@ -28,10 +28,12 @@ function formatDateCompactInt(date) {
 
 const now = new Date();
 var compactInt;
-function start(userId) {
+function start(userId, userName, userPic) {
   compactInt = formatDateCompactInt(now);
   getUserIdData(userId);
   console.log(compactInt);
+  document.getElementById("user-name").textContent = userName;
+  document.getElementById("user-picture").src = userPic;
 }
 function getUserIdData(userId) {
   fetch(QUERY_URL)

@@ -41,7 +41,10 @@
 <body>
 
   <section id="page1">
-    <div>User ID</div>
+    <div class="user-info">
+      <img id="user-picture" class="user-pic" src="" alt="Profile Picture">
+      <h2 id="user-name" class="user-name"></h2>
+    </div>
   </section>
 
   <section id="page2">
@@ -70,20 +73,28 @@
   <script>
     function initLiff() {
       liff.init({ liffId: "2008179386-r0RPOmdm" })
-      .then(() => {
-        if (!liff.isLoggedIn()) {
-          liff.login();
-        } else {
-          const dtoken = liff.getDecodedIDToken();
-          const userId = dtoken.sub;
-          start(userId);
-        }
-      }).catch(err => console.error("LIFF init error:", err));
+        .then(() => {
+          if (!liff.isLoggedIn()) {
+            liff.login();
+          } else {
+            const dtoken = liff.getDecodedIDToken();
+            const userId = dtoken.sub;
+            liff.getProfile()
+              .then(profile => {
+                const userName = profile.displayName;
+                const userPic = profile.pictureUrl;
+                start(userId, userName, userPic);
+              })
+              .catch(err => console.error("Profile error:", err));
+          }
+        })
+        .catch(err => console.error("LIFF init error:", err));
     }
 
     $(document).ready(function() {
       initLiff();
     });
+
   </script>
 
   <script src="script.js"></script>
