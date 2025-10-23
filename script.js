@@ -264,8 +264,8 @@ function resizeCharts2() {
   const canvases = document.querySelectorAll('.chartCanvas2');
 
   canvases.forEach((canvas, i) => {
-    canvas.width = wrapper.clientWidth * 0.6;
-    canvas.height = wrapper.clientHeight * 0.6;
+    canvas.width = wrapper.clientWidth * 0.8;
+    canvas.height = wrapper.clientHeight * 0.7;
     canvas.style.top = '50%';
     canvas.style.left = '50%';
     canvas.style.transform = 'translate(-50%, -50%)';
