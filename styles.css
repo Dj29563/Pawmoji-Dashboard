@@ -110,6 +110,34 @@ button {
   color: black;
 }
 
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5%;
+}
 
+.welcome-text {
+  font-size: 3.5vw;      /* scales with screen width */
+  font-weight: 700;
+  color: #444;
+  margin-bottom: 2%;
+  text-align: center;
+}
 
+.user-pic {
+  width: 25%;
+  max-width: 120px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 5% rgba(0, 0, 0, 0.2);
+}
 
+.user-name {
+  margin-top: 2%;
+  font-size: 2.5vw;
+  color: #333;
+  font-weight: 600;
+  text-align: center;
+}
