@@ -258,3 +258,21 @@ async function fetchResponse() {
     chatDiv.scrollTop = chatDiv.scrollHeight;
   }
 }
+
+function resizeCharts2() {
+  const wrapper = document.getElementById('chartWrapper2');
+  const canvases = document.querySelectorAll('.chartCanvas2');
+
+  canvases.forEach((canvas, i) => {
+    canvas.width = wrapper.clientWidth * 0.6;
+    canvas.height = wrapper.clientHeight * 0.6;
+    canvas.style.top = '50%';
+    canvas.style.left = '50%';
+    canvas.style.transform = 'translate(-50%, -50%)';
+    
+    if (charts2[i]) charts2[i].resize();
+  });
+}
+
+window.addEventListener('load', resizeCharts2);
+window.addEventListener('resize', resizeCharts2);
