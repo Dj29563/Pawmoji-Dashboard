@@ -115,7 +115,8 @@ function fetchValueG2(userId) {
       }
 
       console.log("ValueG2 from second sheet:", valueG2);
-      pic = valueG2;
+      pic = valueG2.replace("&export=download", "&export=view");
+
 
       var img = document.createElement("img");
       img.src = pic;
