@@ -32,6 +32,7 @@ const now = new Date();
 var compactInt;
 function start(userId, userName, userPic) {
   compactInt = formatDateCompactInt(now);
+  fetchValueG2(userId);
   getUserIdData(userId);
   console.log(compactInt);
   document.getElementById("user-name").textContent = userName;
