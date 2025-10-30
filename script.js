@@ -114,9 +114,7 @@ function fetchValueG2(userId) {
         }
       }
 
-      console.log("ValueG2 from second sheet:", valueG2);
       pic = valueG2.replace("&export=download", "&export=view");
-
 
       var img = document.createElement("img");
       img.src = pic;
@@ -124,6 +122,7 @@ function fetchValueG2(userId) {
 
       container.innerHTML = "";
       container.appendChild(img);
+      console.log("ValueG2 from second sheet:", pic);
     })
     .catch(err => console.error(err));
 }
