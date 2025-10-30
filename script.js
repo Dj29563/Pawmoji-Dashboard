@@ -114,19 +114,30 @@ function fetchValueG2(userId) {
         }
       }
 
-      pic = valueG2.replace("&export=download", "&export=view");
+      if (valueG2) {
+        // Extract the file ID from the original link
+        const fileIdMatch = valueG2.match(/id=([a-zA-Z0-9_-]+)/);
+        if (fileIdMatch) {
+          const fileId = fileIdMatch[1];
+          pic = `https://drive.google.com/uc?export=view&id=${fileId}`;
 
-      var img = document.createElement("img");
-      img.src = pic;
-      var container = document.getElementById("imageContainer");
+          var img = document.createElement("img");
+          img.src = pic;
 
-      container.innerHTML = "";
-      container.appendChild(img);
-      console.log("ValueG2 from second sheet:", pic);
+          var container = document.getElementById("imageContainer");
+          container.innerHTML = ""; // remove previous image
+          container.appendChild(img);
+
+          console.log("ValueG2 converted to viewable pic:", pic);
+        } else {
+          console.error("Could not extract file ID from valueG2");
+        }
+      } else {
+        console.error("No valueG2 found for user:", userId);
+      }
     })
     .catch(err => console.error(err));
 }
-
 var ctx = document.getElementById('myChart').getContext('2d');
 
 // Create chart with initial zeros
