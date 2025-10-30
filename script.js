@@ -116,6 +116,13 @@ function fetchValueG2(userId) {
 
       console.log("ValueG2 from second sheet:", valueG2);
       pic = valueG2;
+
+      var img = document.createElement("img");
+      img.src = pic;
+      var container = document.getElementById("imageContainer");
+
+      container.innerHTML = "";
+      container.appendChild(img);
     })
     .catch(err => console.error(err));
 }
