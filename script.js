@@ -1,7 +1,9 @@
 const SHEET_ID = "1EgoSPO4IgeqGEt1bOYMdjswDr99cZpOCF-ocKUQk6yQ";
 const SHEET_NAME = "Database";
 const QUERY_URL = "https://docs.google.com/spreadsheets/d/1EgoSPO4IgeqGEt1bOYMdjswDr99cZpOCF-ocKUQk6yQ/gviz/tq?sheet=Database";
+const QUERY_URL2 = "https://docs.google.com/spreadsheets/d/1EgoSPO4IgeqGEt1bOYMdjswDr99cZpOCF-ocKUQk6yQ/gviz/tq?sheet=Responses";
 
+var pic = null;
 var chart = null;
 var radarDataOriginal = [0, 0, 0, 0, 0, 0, 0, 0];
 var counts = Array.from({length:4}, () => Array(8).fill(0));
@@ -92,6 +94,29 @@ function getUserIdData(userId) {
       return { userRows, counts };
     })
     .catch(err => console.error("Error fetching user data:", err));
+}
+
+function fetchValueG2(userId) {
+  fetch(QUERY_URL2)
+    .then(res => res.text())
+    .then(data2 => {
+      const json2 = JSON.parse(data2.substring(47, data2.length - 2));
+      const rows2 = json2.table.rows;
+      let valueG2 = null;
+
+      for (let row of rows2) {
+        const cellE = row.c[4]; 
+        if (cellE && cellE.v == userId) {
+          const cellG = row.c[6]; 
+          valueG2 = cellG ? cellG.v : null;
+          break;
+        }
+      }
+
+      console.log("ValueG2 from second sheet:", valueG2);
+      pic = valueG2;
+    })
+    .catch(err => console.error(err));
 }
 
 var ctx = document.getElementById('myChart').getContext('2d');
