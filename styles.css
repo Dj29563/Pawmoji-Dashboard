@@ -144,9 +144,9 @@ button {
 }
 
 #imageContainer {
-  width: 200px;          /* container width */
-  height: 200px;         /* container height */
-  overflow: hidden;      /* hide any overflow from large images */
+  width: 80%;
+  aspect-ratio: 1/1;
+  overflow: hidden;      
   border: 2px solid #000;
   border-radius: 10px;
 }
