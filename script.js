@@ -119,7 +119,7 @@ function fetchValueG2(userId) {
         const fileIdMatch = valueG2.match(/id=([a-zA-Z0-9_-]+)/);
         if (fileIdMatch) {
           const fileId = fileIdMatch[1];
-          pic = `https://drive.google.com/uc?export=view&id=${fileId}`;
+          pic = `https://drive.google.com/thumbnail?id=${fileId}&sz=s1600`;
 
           var img = document.createElement("img");
           img.src = pic;
