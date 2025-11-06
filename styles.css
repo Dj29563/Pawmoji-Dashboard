@@ -110,6 +110,20 @@ button {
   color: black;
 }
 
+#welcomebox {
+  display: flex;
+  align-items: center;        /* vertically center items */
+  justify-content: center;    /* center content horizontally */
+  gap: 10px;                  /* space between items */
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 10px 15px;
+  width: 90%;
+  max-width: 400px;
+  margin: 20px auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
 .user-info {
   display: flex;
   flex-direction: column;
@@ -120,27 +134,21 @@ button {
   gap: 3vh;
 }
 
-.welcome-text {
-  font-size: 8vw;           
-  font-weight: 700;
-  color: #444;
-  text-align: center;
-}
-
 .user-pic {
-  width: 30vw;              
-  max-width: 250px;          
+  width: 15vw;              
+  max-width: 70px;          
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   object-fit: cover;
   box-shadow: 0 0 5% rgba(0, 0, 0, 0.2);
 }
 
-.user-name {
-  font-size: 6vw;
-  color: #333;
+.welcome-text, .user-name {
+  margin: 0;
   font-weight: 600;
-  text-align: center;
+  color: #333;
+  font-size: 4.5vw;
+  white-space: nowrap; /* prevent wrapping */
 }
 
 #imageContainer {
