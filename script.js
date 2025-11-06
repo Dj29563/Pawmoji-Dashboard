@@ -13,6 +13,10 @@ const days = [
   "วันเสาร์"      // Saturday
 ];
 
+const today = new Date().getDay();
+const welcomeText = document.getElementById("welcome-text");
+welcomeText.textContent = `สวัสดี ${days[today]}`;
+
 var pic = null;
 var chart = null;
 var radarDataOriginal = [0, 0, 0, 0, 0, 0, 0, 0];
@@ -47,10 +51,6 @@ function start(userId, userName, userPic) {
   console.log(compactInt);
   document.getElementById("user-name").textContent = userName;
   document.getElementById("user-picture").src = userPic;
-  
-  const today = new Date().getDay();
-  const welcomeText = document.getElementById("welcome-text");
-  welcomeText.textContent = `สวัสดี ${days[today]}`;
 }
 function getUserIdData(userId) {
   fetch(QUERY_URL)
