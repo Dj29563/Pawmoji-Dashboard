@@ -90,6 +90,7 @@ button {
 }
 
 .chat-box {
+  display: flex;
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
@@ -167,7 +168,7 @@ button {
 }
 
 #opendrive {
-  display: block;
+  display: flex;
   margin: 15px auto;
   padding: 10px 20px;
   background-color: #fcff3d;
