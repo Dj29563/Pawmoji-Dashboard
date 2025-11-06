@@ -104,12 +104,14 @@ function fetchValueG2(userId) {
       const json2 = JSON.parse(data2.substring(47, data2.length - 2));
       const rows2 = json2.table.rows;
       let valueG2 = null;
-
+      let valueF = null;
       for (let row of rows2) {
         const cellE = row.c[4]; 
         if (cellE && cellE.v == userId) {
           const cellG = row.c[6]; 
+          const cellF = row.c[5];
           valueG2 = cellG ? cellG.v : null;
+          valueF = cellF ? cellF.v : null;
           break;
         }
       }
@@ -134,6 +136,14 @@ function fetchValueG2(userId) {
         }
       } else {
         console.error("No valueG2 found for user:", userId);
+      }
+
+      if (valueF) {
+        const btn = document.getElementById("opendrive");
+          btn.onclick = () => {
+            const folderLink = `https://drive.google.com/drive/folders/${valueF}`;
+            window.open(folderLink, "_blank");
+          };
       }
     })
     .catch(err => console.error(err));
