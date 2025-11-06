@@ -89,21 +89,6 @@ button {
   align-items: center;
 }
 
-.chat-box {
-  display: flex;
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  border: 1px solid #ccc;
-  padding: 10px;
-  height: 400px;
-  overflow-y: auto;
-  font-family: Arial, sans-serif;
-  font-size: 14px; 
-  line-height: 1.4;
-  background-color: #f9f9f9;
-}
-
 .message {
   margin-bottom: 8px;
   padding: 6px 10px;
@@ -167,12 +152,30 @@ button {
   display: block;        /* remove default inline spacing */
 }
 
+.chat-box {
+  display: fixed;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  height: 400px;
+  overflow-y: auto;
+  font-family: Arial, sans-serif;
+  font-size: 14px; 
+  line-height: 1.4;
+  background-color: #f9f9f9;
+}
+
 #opendrive {
-  display: flex;
-  margin: 15px auto;
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
   padding: 10px 20px;
   background-color: #fcff3d;
-  color: white;
+  color: #333;
   font-size: 5vw;
   font-weight: 600;
   border: none;
@@ -180,4 +183,5 @@ button {
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   transition: background-color 0.2s ease;
+  z-index: 100;
 }
