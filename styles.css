@@ -165,3 +165,18 @@ button {
   object-fit: cover;     /* keeps aspect ratio, fills container */
   display: block;        /* remove default inline spacing */
 }
+
+#opendrive {
+  display: block;
+  margin: 15px auto;
+  padding: 10px 20px;
+  background-color: #fcff3d;
+  color: white;
+  font-size: 5vw;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: background-color 0.2s ease;
+}
