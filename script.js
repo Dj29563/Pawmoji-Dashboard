@@ -3,20 +3,6 @@ const SHEET_NAME = "Database";
 const QUERY_URL = "https://docs.google.com/spreadsheets/d/1EgoSPO4IgeqGEt1bOYMdjswDr99cZpOCF-ocKUQk6yQ/gviz/tq?sheet=Database";
 const QUERY_URL2 = "https://docs.google.com/spreadsheets/d/1EgoSPO4IgeqGEt1bOYMdjswDr99cZpOCF-ocKUQk6yQ/gviz/tq?sheet=Responses";
 
-const days = [
-  "วันอาทิตย์",  // Sunday
-  "วันจันทร์",   // Monday
-  "วันอังคาร",   // Tuesday
-  "วันพุธ",      // Wednesday
-  "วันพฤหัสบดี", // Thursday
-  "วันศุกร์",     // Friday
-  "วันเสาร์"      // Saturday
-];
-
-const today = new Date().getDay();
-const welcomeText = document.getElementById("welcome-text");
-welcomeText.textContent = `สวัสดี ${days[today]}`;
-
 var pic = null;
 var chart = null;
 var radarDataOriginal = [0, 0, 0, 0, 0, 0, 0, 0];
