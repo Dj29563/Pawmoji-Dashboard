@@ -110,6 +110,7 @@ function updateformat() {
     { emotion: "โกรธ",       count: counts[3][6] },
     { emotion: "สนใจ",      count: counts[3][7] }
   ];
+  console.log("formattedEmotions =", formattedEmotions);
 }
 
 function fetchValueG2(userId) {
