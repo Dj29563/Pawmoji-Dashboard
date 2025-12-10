@@ -309,15 +309,20 @@ function toggleChart(index){
 const chatDiv = document.getElementById("chat");
 
 async function fetchResponse() {
-  chatDiv.innerHTML += `<div class="message gpt">Fetching response...</div>`;
   chatDiv.scrollTop = chatDiv.scrollHeight;
 
   try {
-    const response = await fetch("/api/chat");
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        emotions: formattedEmotions   // send your formatted array
+      })
+    });
     const data = await response.json();
 
     if (data.reply) {
-      chatDiv.innerHTML += `<div class="message gpt">GPT: ${data.reply}</div>`;
+      chatDiv.innerHTML += `<div class="message gpt">${data.reply}</div>`;
     } else {
       chatDiv.innerHTML += `<div class="message gpt">Error: ${data.error}</div>`;
     }

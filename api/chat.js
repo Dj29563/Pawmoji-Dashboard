@@ -7,15 +7,23 @@ const openai = new OpenAI({
 
 export default async function handler(req, res) {
   try {
-    // Correctly define backend data as an object
+    const clientEmotions = req.body?.emotions;
+
+    const formattedEmotions = [
+      { emotion: "มีความสุข", count: clientEmotions[0] },
+      { emotion: "เชื่อใจ", count: clientEmotions[1] },
+      { emotion: "กลัว", count: clientEmotions[2] },
+      { emotion: "ตกใจ", count: clientEmotions[3] },
+      { emotion: "เศร้า", count: clientEmotions[4] },
+      { emotion: "เกลียดชัง", count: clientEmotions[5] },
+      { emotion: "โกรธ", count: clientEmotions[6] },
+      { emotion: "สนใจ", count: clientEmotions[7] },
+    ];
+
     const backendData = {
       question: "You are an expert animal behavior annotator. Review this pet's emotions data and explain how it feels and how to improve its behavior. ตอบสั้นๆ เป็นภาษาไทย",
       pet: {
-        name: "Buddy",
-        emotions: [
-          { emotion: "เชื่อใจ", count: 20 },
-          { emotion: "มีความสุข", count: 20 }
-        ]
+        emotions: formattedEmotions
       }
     };
 
