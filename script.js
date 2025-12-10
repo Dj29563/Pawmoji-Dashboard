@@ -92,7 +92,6 @@ function getUserIdData(userId) {
       }
       createRadarChart();
       createCharts2();
-      fetchResponse();
       updateformat();
       return { userRows, counts };
     })
@@ -111,6 +110,7 @@ function updateformat() {
     { emotion: "สนใจ",      count: counts[3][7] }
   ];
   console.log("formattedEmotions =", formattedEmotions);
+  fetchResponse();
 }
 
 function fetchValueG2(userId) {
