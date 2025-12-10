@@ -14,6 +14,7 @@ var dataall = Array.from({ length: 4 }, () =>
     Array(24).fill(0)
   )
 );
+var formattedEmotions;
 function formatDateCompactInt(date) {
   const pad = (num, size) => String(num).padStart(size, '0');
 
@@ -92,9 +93,23 @@ function getUserIdData(userId) {
       createRadarChart();
       createCharts2();
       fetchResponse();
+      updateformat();
       return { userRows, counts };
     })
     .catch(err => console.error("Error fetching user data:", err));
+}
+
+function updateformat() {
+  formattedEmotions = [
+    { emotion: "มีความสุข", count: counts[3][0] },
+    { emotion: "เชื่อใจ",   count: counts[3][1] },
+    { emotion: "กลัว",       count: counts[3][2] },
+    { emotion: "ตกใจ",      count: counts[3][3] },
+    { emotion: "เศร้า",      count: counts[3][4] },
+    { emotion: "เกลียดชัง", count: counts[3][5] },
+    { emotion: "โกรธ",       count: counts[3][6] },
+    { emotion: "สนใจ",      count: counts[3][7] }
+  ];
 }
 
 function fetchValueG2(userId) {
