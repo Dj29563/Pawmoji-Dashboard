@@ -9,6 +9,7 @@ export default async function handler(req, res) {
   try {
     const clientEmotions = req.body?.emotions || [];
 
+    console.log(clientEmotions);
     const backendData = {
       question: "You are an expert animal behavior annotator. Review this pet's emotions data and explain how it feels and how to improve its behavior. ตอบสั้นๆ เป็นภาษาไทย",
       pet: {
