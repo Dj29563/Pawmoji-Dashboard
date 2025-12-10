@@ -11,7 +11,7 @@ export default async function handler(req, res) {
 
     console.log(clientEmotions);
     const backendData = {
-      question: "You are an expert animal behavior annotator. Review this pet's emotions data and explain how it feels and how to improve its behavior. ตอบสั้นๆ เป็นภาษาไทย",
+      question: "You are an expert animal-behavior annotator. Analyze the pet's emotions ONLY based on the numeric counts provided. 1. Identify the top 1–2 emotions with the highest counts. 2. Explain briefly how the pet feels from those emotions. 3. Give one short suggestion to improve or support its behavior. ตอบเป็นภาษาไทยแบบสั้น กระชับ และอิงตามตัวเลขเท่านั้น ห้ามตอบว่าข้อมูลไม่ชัดเจนถ้ามีตัวเลขมากกว่า 0 ",
       pet: {
         emotions: clientEmotions
       }
