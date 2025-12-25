@@ -5,12 +5,12 @@ const QUERY_URL2 = "https://docs.google.com/spreadsheets/d/1EgoSPO4IgeqGEt1bOYMd
 
 var pic = null;
 var chart = null;
-var radarDataOriginal = [0, 0, 0, 0, 0, 0, 0, 0];
-var counts = Array.from({length:4}, () => Array(8).fill(0));
+var radarDataOriginal = [0, 0, 0, 0];
+var counts = Array.from({length:4}, () => Array(4).fill(0));
 var tot = Array(4).fill(0);
 var tem = 3;
 var dataall = Array.from({ length: 4 }, () =>
-  Array.from({ length: 8 }, () =>
+  Array.from({ length: 4 }, () =>
     Array(24).fill(0)
   )
 );
@@ -69,7 +69,7 @@ function getUserIdData(userId) {
         {
           tem=0;
         }
-        if (value >= 1 && value <= 8) {
+        if (value >= 1 && value <= 4) {
           counts[tem][value-1]++;
           tot[tem]++;
           dataall[tem][value-1][hourdata]++;
@@ -78,7 +78,7 @@ function getUserIdData(userId) {
 
       for(let i=1;i<=3;i++)
       {
-        for(let j=0;j<=7;j++)
+        for(let j=0;j<=3;j++)
         {
           counts[i][j]=counts[i][j]+counts[i-1][j];
           dataall[i][j][j]=dataall[i][j][j]+dataall[i-1][j][j];
@@ -87,7 +87,7 @@ function getUserIdData(userId) {
       }
 
       console.log("Counts for user:", counts);
-      for(let i = 1; i<= 8; i++) {
+      for(let i = 1; i<= 4; i++) {
         radarDataOriginal[i-1] = counts[3][i-1];
       }
       createRadarChart();
@@ -101,13 +101,9 @@ function getUserIdData(userId) {
 function updateformat() {
   formattedEmotions = [
     { emotion: "มีความสุข", count: counts[3][0] },
-    { emotion: "เชื่อใจ",   count: counts[3][1] },
-    { emotion: "กลัว",       count: counts[3][2] },
-    { emotion: "ตกใจ",      count: counts[3][3] },
-    { emotion: "เศร้า",      count: counts[3][4] },
-    { emotion: "เกลียดชัง", count: counts[3][5] },
-    { emotion: "โกรธ",       count: counts[3][6] },
-    { emotion: "สนใจ",      count: counts[3][7] }
+    { emotion: "ตกใจ",       count: counts[3][1] },
+    { emotion: "เศร้า",      count: counts[3][2] },
+    { emotion: "โกรธ",       count: counts[3][3] }
   ];
   console.log("formattedEmotions =", formattedEmotions);
   fetchResponse();
@@ -172,8 +168,7 @@ function createRadarChart() {
       type: 'radar',
       data: {
           labels: [
-              'รู้สึกมีความสุข','รู้สึกเชื่อใจ','รู้สึกกลัว','รู้สึกตกใจ',
-              'รู้สึกเศร้า','รู้สึกเกลียดชัง','รู้สึกโกรษ','รู้สึกสนใจ'
+              'รู้สึกมีความสุข','รู้สึกตกใจ','รู้สึกเศร้า','รู้สึกโกรธ'
           ],
           datasets: [{
               label: 'User Data',
@@ -181,8 +176,7 @@ function createRadarChart() {
               borderColor: '#a8a8a8ff',
               backgroundColor: 'rgba(204, 204, 204, 0.6)',
               pointBackgroundColor: [
-                  '#fffe40','#53fe5c','#008000','#5cb3ff',
-                  '#4166f5','#fb5ffc','#ff0000','#ffa756'
+                  '#fffe40','#53fe5c','#5cb3ff','#ff0000'
               ],
               pointRadius: 4
           }]
@@ -194,7 +188,7 @@ function createRadarChart() {
           scales: {
               r: {
                   min: 0,
-                  max: tot[3],
+                  max: Math.max(1, tot[3]),
                   ticks: { display: false },
                   grid: { circular: true },
                   pointLabels: { font: { size: 14 } }
@@ -235,19 +229,15 @@ const labels2 = Array.from({length: 24}, (_, i) => i + ":00");
 const colors2 = [
   'rgba(255,254,64,0.6)',
   'rgba(83,254,92,0.6)',
-  'rgba(0,128,0,0.6)',
-  'rgba(92,179,255,0.6)',
   'rgba(65,102,245,0.6)',
-  'rgba(251,95,252,0.6)',
-  'rgba(255,0,0,0.6)',
-  'rgba(255,167,86,0.6)'
+  'rgba(255,0,0,0.6)'
 ];
 
 const charts2 = [];
-const chartOpacity2 = Array(8).fill(true);
+const chartOpacity2 = Array(4).fill(true);
 
 function createCharts2() {
-  for(let i=0;i<8;i++){
+  for(let i=0;i<4;i++){
     const ctx2 = document.getElementById('chart'+i).getContext('2d');
     charts2[i] = new Chart(ctx2, {
       type: 'bar',
